@@ -3,27 +3,43 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   display: grid;
   grid-template-areas: "controls video";
   grid-template-columns: 1fr 3fr;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 controls {
   grid-area: controls;
+  overflow: scroll;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 1rem;
 }
 
 input {
   zoom: 250%;
 }
 
+label {
+  font-size: 1.5rems  
+}
+
+controls > div {
+  margin: 1rem 0.5rem 1rem;
+}
+
 button {
-  font-size: 2rem;
-  padding: 0.2em;
+  font-size: 1.5rem;
+  padding: 0.2em 0.5em;
   width: 100%;
   text-align: left;
 }
