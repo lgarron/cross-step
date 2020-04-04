@@ -6,7 +6,7 @@ window.addEventListener("load", () => {
   for (let i = 0; i < buttons.length; i++) {
     const button = buttons[i];
     button.addEventListener("click", () => {
-      video.currentTime = parseInt(button.getAttribute("data-timestamp")) - (leadIn.checked ? 6 : 0);
+      video.currentTime = parseFloat(button.getAttribute("data-timestamp")) - (leadIn.checked ? 6 : 0);
       video.play();
       video.focus();
     });
