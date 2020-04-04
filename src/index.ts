@@ -9,7 +9,6 @@ window.addEventListener("load", () => {
       video.currentTime = parseInt(button.getAttribute("data-timestamp")) - (leadIn.checked ? 6 : 0);
       video.play();
       video.focus();
-    })
+    });
   }
-
-})
+});
