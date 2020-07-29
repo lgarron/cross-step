@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -14,13 +15,14 @@ body {
   display: grid;
   grid-template-areas: "controls video";
   grid-template-columns: 1fr 3fr;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 controls {
   grid-area: controls;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .title {
@@ -48,10 +50,19 @@ controls > div {
 }
 
 button {
-  font-size: 1.5rem;
+  font-size: min(1.5rem, 1.5vw);
   padding: 0.2em 0.5em;
   width: 100%;
   text-align: left;
+  height: 3em;
+
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  margin: 2px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 video {
@@ -59,4 +70,4 @@ video {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 1);
-} 
+}
