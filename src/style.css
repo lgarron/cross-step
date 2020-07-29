@@ -80,3 +80,10 @@ video {
   height: 100%;
   background: rgba(0, 0, 0, 1);
 }
+
+.flourish {
+  display: grid;
+  place-content: center;
+  font-size: 200%;
+  color: rgba(0, 0, 0, 0.7);
+}
