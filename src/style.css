@@ -26,7 +26,7 @@ controls {
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding: 0;
   margin: 1rem;
 }
@@ -41,28 +41,37 @@ input {
   margin-left: 0rem;
 }
 
-label {
-  font-size: 1.2rem;
-}
-
 controls > div {
   margin: 1rem;
 }
 
-button {
+a.timestamp-link {
+  display: block;
+
   font-size: min(1.5rem, 1.5vw);
   padding: 0.2em 0.5em;
   width: 100%;
   text-align: left;
-  height: 3em;
 
   background: rgba(0, 0, 0, 0.1);
   border: none;
   margin: 2px;
+
+  text-decoration: none;
+  color: black;
 }
 
-button:hover {
-  cursor: pointer;
+.timestamp-value {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+a.timestamp-link:hover,
+a.timestamp-link:hover .timestamp-value {
+  color: rgba(0, 0, 255, 1);
+}
+
+a.timestamp-link:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 video {
