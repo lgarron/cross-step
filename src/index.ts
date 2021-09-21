@@ -11,7 +11,7 @@ window.addEventListener("load", () => {
         (leadIn.checked ? 6 : 0);
       video.play();
       video.focus();
-      e.preventDefault();
+      // e.preventDefault();
     });
   }
 });
