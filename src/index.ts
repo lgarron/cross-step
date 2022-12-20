@@ -48,7 +48,7 @@ function highlightCurrentTime() {
       button.classList.add("current");
       button.scrollIntoView({
         behavior: "smooth",
-        block: "nearest",
+        block: "center",
       });
       currentButtonInfo = previousButtonInfo;
     }
