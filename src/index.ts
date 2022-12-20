@@ -136,6 +136,6 @@ for (let i = 0; i < buttons.length; i++) {
     }
     video.play();
     video.focus();
-    // e.preventDefault();
+    e.preventDefault();
   });
 }
