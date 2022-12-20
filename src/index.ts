@@ -46,6 +46,7 @@ function highlightCurrentTime() {
     if (currentButtonInfo?.button !== button) {
       currentButtonInfo?.button.classList.remove("current");
       button.classList.add("current");
+      button.scrollIntoView();
       currentButtonInfo = previousButtonInfo;
     }
   } else {
