@@ -7,6 +7,7 @@ interface ButtonInfo {
   button: HTMLElement;
   startTimestamp: number;
   endTimestamp: number;
+  animation?: Animation;
 }
 const buttonInfos: ButtonInfo[] = [];
 
@@ -25,28 +26,49 @@ for (const button of buttons) {
 }
 lastButtonInfo!.endTimestamp = video.duration;
 
-function setPercent(buttonInfo: ButtonInfo, timestamp: number): void {
+function setPercent(
+  buttonInfo: ButtonInfo,
+  timestamp: number,
+  type: string,
+): void {
   const percent =
     (100 * (timestamp - buttonInfo.startTimestamp)) /
     (buttonInfo.endTimestamp - buttonInfo.startTimestamp);
-  (
-    buttonInfo.button as HTMLAnchorElement
-  ).style.background = `linear-gradient(90deg, var(--gradient-left) 0 ${percent}%, var(--gradient-right) ${percent}% 100%)`;
-  console.log(
-    buttonInfo.button,
-    `linear-gradient(90deg, --gradient-left 0 ${percent}%, --gradient-right ${percent}% 100%)`,
+  buttonInfo.animation?.cancel();
+  if (type === "seeking" || (type === "seeked" && video.paused === true)) {
+    buttonInfo.button.style.backgroundPositionX = `${100 - percent}%`;
+    return;
+  }
+  buttonInfo.animation = buttonInfo.button.animate(
+    [
+      {
+        backgroundPositionX: `${100 - percent}%`,
+      },
+      {
+        backgroundPositionX: "0%",
+      },
+    ],
+    {
+      duration: 1000 * (buttonInfo.endTimestamp - buttonInfo.startTimestamp),
+      easing: "linear",
+    },
   );
 }
 
 let currentButtonInfo: ButtonInfo | null;
-function highlightCurrentTime() {
+let lastHotPathTimestamp: number = 0;
+function highlightCurrentTime(e: Event) {
   const { currentTime } = video;
   if (
     currentButtonInfo &&
     currentButtonInfo.startTimestamp <= currentTime &&
     currentTime < currentButtonInfo.endTimestamp
   ) {
-    setPercent(currentButtonInfo, currentTime);
+    // TODO: Listen for the `seeking` and `seeked` events instead.
+    if (e.type !== "timeupdate") {
+      setPercent(currentButtonInfo, currentTime, e.type);
+    }
+    lastHotPathTimestamp = currentTime;
     return;
   }
 
@@ -62,7 +84,8 @@ function highlightCurrentTime() {
     if (currentButtonInfo?.button !== button) {
       if (currentButtonInfo) {
         currentButtonInfo.button.classList.remove("current");
-        currentButtonInfo.button.style.background = "";
+        currentButtonInfo.button.style.backgroundPositionX = "00%";
+        currentButtonInfo.animation?.cancel();
       }
       setPercent(latestButtonInfo, currentTime);
       button.classList.add("current");
@@ -77,6 +100,10 @@ function highlightCurrentTime() {
   }
 }
 video.addEventListener("timeupdate", highlightCurrentTime);
+video.addEventListener("seeking", highlightCurrentTime);
+video.addEventListener("seeked", highlightCurrentTime);
+video.addEventListener("play", highlightCurrentTime);
+video.addEventListener("pause", highlightCurrentTime);
 
 const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
 for (let i = 0; i < buttons.length; i++) {
