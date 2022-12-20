@@ -3,31 +3,53 @@ const video = document.querySelector("video")!;
 
 interface ButtonInfo {
   button: Element;
-  timestamp: number;
+  startTimestamp: number;
+  endTimestamp: number;
 }
-const buttonInfos: ButtonInfo[] = Array.from(buttons).map((button) => ({
-  button,
-  timestamp: parseFloat(button.getAttribute("data-timestamp")!),
-}));
-let currentButton: Element | null;
+const buttonInfos: ButtonInfo[] = [];
+
+let lastButtonInfo: ButtonInfo | undefined;
+for (const button of buttons) {
+  const startTimestamp = parseFloat(button.getAttribute("data-timestamp")!);
+  const newButtonInfo = {
+    button,
+    startTimestamp,
+  } as ButtonInfo;
+  if (lastButtonInfo) {
+    lastButtonInfo.endTimestamp = startTimestamp;
+  }
+  buttonInfos.push(newButtonInfo);
+  lastButtonInfo = newButtonInfo;
+}
+lastButtonInfo!.endTimestamp = video.duration;
+
+let currentButtonInfo: ButtonInfo | null;
 function highlightCurrentTime() {
   const { currentTime } = video;
+  if (
+    currentButtonInfo &&
+    currentButtonInfo.startTimestamp <= currentTime &&
+    currentTime < currentButtonInfo.endTimestamp
+  ) {
+    return;
+  }
+
   let previousButtonInfo: ButtonInfo | undefined;
   for (const buttonInfo of buttonInfos) {
-    if (currentTime <= buttonInfo.timestamp) {
+    if (currentTime <= buttonInfo.startTimestamp) {
       break;
     }
     previousButtonInfo = buttonInfo;
   }
   if (previousButtonInfo) {
     const { button } = previousButtonInfo;
-    if (currentButton !== button) {
-      currentButton?.classList.remove("current");
+    if (currentButtonInfo?.button !== button) {
+      currentButtonInfo?.button.classList.remove("current");
       button.classList.add("current");
-      currentButton = button;
+      currentButtonInfo = previousButtonInfo;
     }
   } else {
-    currentButton?.classList.remove("current");
+    currentButtonInfo?.button.classList.remove("current");
   }
 }
 video.addEventListener("timeupdate", highlightCurrentTime);
