@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "npx vite ./src",
-    "build": "npx vite build --outDir ../dist ./src",
+    "build": "npx vite build --emptyOutDir --outDir ../dist ./src",
     "clean": "rm -rf ./dist",
     "lint": "npx rome check ./src",
     "format": "npx rome format ./src"
