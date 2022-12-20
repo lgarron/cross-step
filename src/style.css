@@ -94,3 +94,7 @@ video {
   font-size: 200%;
   color: rgba(0, 0, 0, 0.7);
 }
+
+a.timestamp-link.current {
+  background: rgb(0, 128, 255, 0.3);
+}
