@@ -1,8 +1,10 @@
-const buttons = document.querySelectorAll("a.timestamp-link");
+const buttons = document.querySelectorAll(
+  "a.timestamp-link",
+) as NodeListOf<HTMLElement>;
 const video = document.querySelector("video")!;
 
 interface ButtonInfo {
-  button: Element;
+  button: HTMLElement;
   startTimestamp: number;
   endTimestamp: number;
 }
@@ -23,6 +25,19 @@ for (const button of buttons) {
 }
 lastButtonInfo!.endTimestamp = video.duration;
 
+function setPercent(buttonInfo: ButtonInfo, timestamp: number): void {
+  const percent =
+    (100 * (timestamp - buttonInfo.startTimestamp)) /
+    (buttonInfo.endTimestamp - buttonInfo.startTimestamp);
+  (
+    buttonInfo.button as HTMLAnchorElement
+  ).style.background = `linear-gradient(90deg, var(--gradient-left) 0 ${percent}%, var(--gradient-right) ${percent}% 100%)`;
+  console.log(
+    buttonInfo.button,
+    `linear-gradient(90deg, --gradient-left 0 ${percent}%, --gradient-right ${percent}% 100%)`,
+  );
+}
+
 let currentButtonInfo: ButtonInfo | null;
 function highlightCurrentTime() {
   const { currentTime } = video;
@@ -31,26 +46,31 @@ function highlightCurrentTime() {
     currentButtonInfo.startTimestamp <= currentTime &&
     currentTime < currentButtonInfo.endTimestamp
   ) {
+    setPercent(currentButtonInfo, currentTime);
     return;
   }
 
-  let previousButtonInfo: ButtonInfo | undefined;
+  let latestButtonInfo: ButtonInfo | undefined;
   for (const buttonInfo of buttonInfos) {
     if (currentTime <= buttonInfo.startTimestamp) {
       break;
     }
-    previousButtonInfo = buttonInfo;
+    latestButtonInfo = buttonInfo;
   }
-  if (previousButtonInfo) {
-    const { button } = previousButtonInfo;
+  if (latestButtonInfo) {
+    const { button } = latestButtonInfo;
     if (currentButtonInfo?.button !== button) {
-      currentButtonInfo?.button.classList.remove("current");
+      if (currentButtonInfo) {
+        currentButtonInfo.button.classList.remove("current");
+        currentButtonInfo.button.style.background = "";
+      }
+      setPercent(latestButtonInfo, currentTime);
       button.classList.add("current");
       button.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
-      currentButtonInfo = previousButtonInfo;
+      currentButtonInfo = latestButtonInfo;
     }
   } else {
     currentButtonInfo?.button.classList.remove("current");

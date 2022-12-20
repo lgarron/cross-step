@@ -65,12 +65,15 @@ a.timestamp-link {
   width: 100%;
   text-align: left;
 
-  background: rgba(0, 0, 0, 0.1);
   border: none;
   margin: 2px;
 
   text-decoration: none;
   color: black;
+
+  background-color: var(--gradient-right);
+  --gradient-left: rgba(0, 0, 0, 0.25);
+  --gradient-right: rgba(0, 0, 0, 0.1);
 }
 
 .timestamp-value {
@@ -142,7 +145,8 @@ a.timestamp-link.current {
 
   a.timestamp-link {
     color: white;
-    background-color: rgba(0, 0, 0, 0.3);
+    --gradient-left: rgba(255, 255, 255, 0.1);
+    --gradient-right: rgba(0, 0, 0, 0.3);
   }
 
   a.timestamp-link:hover,
