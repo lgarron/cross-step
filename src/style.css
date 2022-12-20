@@ -87,7 +87,7 @@ a.timestamp-link:hover .timestamp-value {
 }
 
 a.timestamp-link:hover {
-  background: rgba(0, 0, 0, 0.05);
+  --gradient-left: rgba(0, 0, 0, 0.05);
 }
 
 video {

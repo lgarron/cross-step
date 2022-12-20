@@ -49,7 +49,7 @@ function setPercent(
       },
     ],
     {
-      duration: 1000 * (buttonInfo.endTimestamp - buttonInfo.startTimestamp),
+      duration: 1000 * (buttonInfo.endTimestamp - timestamp),
       easing: "linear",
     },
   );
@@ -87,7 +87,7 @@ function highlightCurrentTime(e: Event) {
         currentButtonInfo.button.style.backgroundPositionX = "00%";
         currentButtonInfo.animation?.cancel();
       }
-      setPercent(latestButtonInfo, currentTime);
+      setPercent(latestButtonInfo, currentTime, e.type);
       button.classList.add("current");
       button.scrollIntoView({
         behavior: "smooth",
