@@ -109,6 +109,11 @@ video.addEventListener("play", highlightCurrentTime);
 video.addEventListener("pause", highlightCurrentTime);
 
 const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
+leadIn.checked = localStorage.crossStepAppLeadIn === "true";
+leadIn.addEventListener("change", () => {
+  localStorage.crossStepAppLeadIn = leadIn.checked ? "true" : "false";
+});
+
 const leadInFlash = document.querySelector(
   "#lead-in-flash",
 )! as HTMLInputElement;
