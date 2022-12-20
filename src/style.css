@@ -111,3 +111,35 @@ a.timestamp-link.current {
     grid-template-rows: auto auto auto;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background: #000D;
+    color: #EEE;
+  }
+
+  a {
+    color: #669df5;
+  }
+
+  a:visited {
+    color: #af73d5;
+  }
+
+  .timestamp-value {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  a.timestamp-link {
+    color: white;
+  }
+
+  a.timestamp-link:hover,
+  a.timestamp-link:hover .timestamp-value {
+    color: #669df5;
+  }
+
+  .flourish {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
