@@ -79,8 +79,8 @@ a.timestamp-link {
 
   background: linear-gradient(90deg, var(--gradient-left)50%, var(--gradient-right) 50%);
   background-size: 200%;
-  --gradient-left: rgba(0, 0, 0, 0.25);
-  --gradient-right: rgba(0, 0, 0, 0.1);
+  --gradient-left: rgba(0, 0, 0, 0.15);
+  --gradient-right: rgba(0, 0, 0, 0.05);
 }
 
 .timestamp-value {
