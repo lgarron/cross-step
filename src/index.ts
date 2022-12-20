@@ -46,7 +46,10 @@ function highlightCurrentTime() {
     if (currentButtonInfo?.button !== button) {
       currentButtonInfo?.button.classList.remove("current");
       button.classList.add("current");
-      button.scrollIntoView();
+      button.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
       currentButtonInfo = previousButtonInfo;
     }
   } else {
@@ -59,9 +62,11 @@ const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
 for (let i = 0; i < buttons.length; i++) {
   const button = buttons[i];
   button.addEventListener("click", (e: Event) => {
-    video.currentTime =
+    video.currentTime = Math.max(
       parseFloat(button.getAttribute("data-timestamp")!) -
-      (leadIn.checked ? 6 : 0);
+        (leadIn.checked ? 6 : 0),
+      0,
+    );
     video.play();
     video.focus();
     // e.preventDefault();
