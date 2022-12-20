@@ -1,10 +1,9 @@
 .PHONY: build
 build: clean-dist
-	npx parcel build --public-url ./ src/index.html
 
 .PHONY: dev
 dev:
-	npx parcel src/index.html
+	node script/dev.js
 
 SFTP_PATH = "towns.dreamhost.com:~/garron.net/app/cross-step/"
 URL       = "https://garron.net/app/cross-step"
