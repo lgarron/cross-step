@@ -1,9 +1,10 @@
 .PHONY: build
 build: clean-dist
+	npx vite build --outDir ../dist ./src
 
 .PHONY: dev
 dev:
-	node script/dev.js
+	npx vite ./src
 
 SFTP_PATH = "towns.dreamhost.com:~/garron.net/app/cross-step/"
 URL       = "https://garron.net/app/cross-step"

@@ -6,8 +6,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "barely-a-dev-server": "^0.4.7",
-    "rome": "^11.0.0"
+    "rome": "^11.0.0",
+    "vite": "^4.0.2"
   },
   "scripts": {
     "lint": "npx rome check ./src",
