@@ -35,7 +35,10 @@ function setPercent(
     (100 * (timestamp - buttonInfo.startTimestamp)) /
     (buttonInfo.endTimestamp - buttonInfo.startTimestamp);
   buttonInfo.animation?.cancel();
-  if (type === "seeking" || (type === "seeked" && video.paused === true)) {
+  if (
+    ["seeking", "pause"].includes(type) ||
+    (type === "seeked" && video.paused === true)
+  ) {
     buttonInfo.button.style.backgroundPositionX = `${100 - percent}%`;
     return;
   }
@@ -106,6 +109,9 @@ video.addEventListener("play", highlightCurrentTime);
 video.addEventListener("pause", highlightCurrentTime);
 
 const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
+const leadInFlash = document.querySelector(
+  "#lead-in-flash",
+)! as HTMLInputElement;
 for (let i = 0; i < buttons.length; i++) {
   const button = buttons[i];
   button.addEventListener("click", (e: Event) => {
@@ -114,6 +120,15 @@ for (let i = 0; i < buttons.length; i++) {
         (leadIn.checked ? 6 : 0),
       0,
     );
+    if (leadIn.checked) {
+      leadInFlash.animate(
+        [{ background: "rgba(128, 128, 128, 0.5)" }, { background: "inherit" }],
+        {
+          duration: 500,
+          easing: "ease-in",
+        },
+      );
+    }
     video.play();
     video.focus();
     // e.preventDefault();

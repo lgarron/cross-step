@@ -55,6 +55,12 @@ input {
   margin-left: 0;
 }
 
+#lead-in-flash {
+  margin: -0.25em;
+  padding: 0.25em;
+  border-radius: 0.25em;
+}
+
 a.timestamp-link {
   display: grid;
   grid-template-columns: auto 1fr;
