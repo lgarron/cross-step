@@ -18,10 +18,14 @@ body {
 
 body {
   display: grid;
-  grid-template-areas: "controls video";
+  grid-template-areas: "header video" "controls video";
   grid-template-columns: 1fr 3fr;
   font-size: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 controls {
@@ -46,7 +50,7 @@ input {
   margin-left: 0rem;
 }
 
-controls>div {
+header>div {
   margin: 1rem;
 }
 
