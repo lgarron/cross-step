@@ -25,7 +25,7 @@ body {
 }
 
 header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 controls {
@@ -120,6 +120,10 @@ a.timestamp-link.current {
     color: #EEE;
   }
 
+  header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
   a {
     color: #669df5;
   }
@@ -129,11 +133,16 @@ a.timestamp-link.current {
   }
 
   .timestamp-value {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  controls {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 
   a.timestamp-link {
     color: white;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   a.timestamp-link:hover,
