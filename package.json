@@ -6,15 +6,15 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "rome": "^12.1.3",
+    "@biomejs/biome": "^1.7.2",
     "vite": "^5.2.11"
   },
   "scripts": {
     "dev": "npx vite ./src",
     "build": "npx vite build --emptyOutDir --outDir ../dist/web/garron.net/app/cross-step/ ./src",
     "clean": "rm -rf ./dist",
-    "lint": "npx rome check ./src",
-    "format": "npx rome format ./src"
+    "lint": "npx @biomejs/biome check ./src",
+    "format": "npx @biomejs/biome format --write ./src"
   },
   "@cubing/deploy": {
     "https://garron.net/app/cross-step/": {}

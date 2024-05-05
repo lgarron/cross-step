@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll(
   "a.timestamp-link",
 ) as NodeListOf<HTMLElement>;
+// biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
 const video = document.querySelector("video")!;
 
 interface ButtonInfo {
@@ -13,7 +14,10 @@ const buttonInfos: ButtonInfo[] = [];
 
 let lastButtonInfo: ButtonInfo | undefined;
 for (const button of buttons) {
-  const startTimestamp = parseFloat(button.getAttribute("data-timestamp")!);
+  const startTimestamp = Number.parseFloat(
+    // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
+    button.getAttribute("data-timestamp")!,
+  );
   const newButtonInfo = {
     button,
     startTimestamp,
@@ -24,6 +28,7 @@ for (const button of buttons) {
   buttonInfos.push(newButtonInfo);
   lastButtonInfo = newButtonInfo;
 }
+// biome-ignore lint/style/noNonNullAssertion: Must be assigned by now.
 lastButtonInfo!.endTimestamp = video.duration;
 
 function setPercent(
@@ -59,6 +64,7 @@ function setPercent(
 }
 
 let currentButtonInfo: ButtonInfo | null;
+// biome-ignore lint/style/noInferrableTypes: Explicit is better than implicit.
 let lastHotPathTimestamp: number = 0;
 function highlightCurrentTime(e: Event) {
   const { currentTime } = video;
@@ -108,12 +114,14 @@ video.addEventListener("seeked", highlightCurrentTime);
 video.addEventListener("play", highlightCurrentTime);
 video.addEventListener("pause", highlightCurrentTime);
 
+// biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
 const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
 leadIn.checked = localStorage.crossStepAppLeadIn === "true";
 leadIn.addEventListener("change", () => {
   localStorage.crossStepAppLeadIn = leadIn.checked ? "true" : "false";
 });
 
+// biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
 const leadInFlash = document.querySelector(
   "#lead-in-flash",
 )! as HTMLInputElement;
@@ -121,7 +129,8 @@ for (let i = 0; i < buttons.length; i++) {
   const button = buttons[i];
   button.addEventListener("click", (e: Event) => {
     video.currentTime = Math.max(
-      parseFloat(button.getAttribute("data-timestamp")!) -
+      // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
+      Number.parseFloat(button.getAttribute("data-timestamp")!) -
         (leadIn.checked ? 6 : 0),
       0,
     );
