@@ -11,9 +11,12 @@
   },
   "scripts": {
     "dev": "npx vite ./src",
-    "build": "npx vite build --emptyOutDir --outDir ../dist ./src",
+    "build": "npx vite build --emptyOutDir --outDir ../dist/web/garron.net/app/cross-step/ ./src",
     "clean": "rm -rf ./dist",
     "lint": "npx rome check ./src",
     "format": "npx rome format ./src"
+  },
+  "@cubing/deploy": {
+    "https://garron.net/app/cross-step/": {}
   }
 }

@@ -16,14 +16,6 @@ update-Makefile:
 	if [ "$(shell uname -s)" = "Darwin" ] ; then sed -i "" ${UPDATE_MAKEFILE_SED_ARGS} ; fi
 	if [ "$(shell uname -s)" != "Darwin" ] ; then sed -i"" ${UPDATE_MAKEFILE_SED_ARGS} ; fi
 
-SFTP_PATH = "towns.dreamhost.com:~/garron.net/app/cross-step/"
-URL       = "https://garron.net/app/cross-step"
-
-.PHONY: deploy
+.PHOHY: deploy
 deploy: build
-	rsync -avz \
-		--exclude .DS_Store \
-		--exclude .git \
-		./dist/ \
-		${SFTP_PATH}
-	echo "\nDone deploying. Go to ${URL}\n"
+	bun x @cubing/deploy
