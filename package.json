@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "npx vite ./src",
     "build": "npx vite build --emptyOutDir --outDir ../dist/web/garron.net/app/cross-step/ ./src",
-    "clean": "rm -rf ./dist",
+    "clean": "rm -rf ./dist ./package-lock.json",
     "lint": "npx @biomejs/biome check ./src",
     "format": "npx @biomejs/biome format --write ./src"
   },
