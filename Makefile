@@ -6,7 +6,7 @@ NPM_COMMANDS = dev build clean lint format
 
 .PHONY: $(NPM_COMMANDS)
 $(NPM_COMMANDS):
-	npm run $@
+	bun run $@
 
 # We write the npm commands to the top of the file above to make shell autocompletion work in more places.
 DYNAMIC_NPM_COMMANDS = $(shell node -e 'console.log(Object.keys(require("./package.json").scripts).join(" "))')

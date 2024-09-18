@@ -10,11 +10,11 @@
     "vite": "^5.2.14"
   },
   "scripts": {
-    "dev": "npx vite ./src",
-    "build": "npx vite build --emptyOutDir --outDir ../dist/web/garron.net/app/cross-step/ ./src",
+    "dev": "bun x vite ./src",
+    "build": "bun x vite build --emptyOutDir --outDir ../dist/web/garron.net/app/cross-step/ ./src",
     "clean": "rm -rf ./dist ./package-lock.json",
-    "lint": "npx @biomejs/biome check ./src",
-    "format": "npx @biomejs/biome format --write ./src"
+    "lint": "bun x @biomejs/biome check ./src",
+    "format": "bun x @biomejs/biome format --write ./src"
   },
   "@cubing/deploy": {
     "https://garron.net/app/cross-step/": {}
