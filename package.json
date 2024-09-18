@@ -6,8 +6,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "^1.7.2",
-    "vite": "^5.2.14"
+    "@biomejs/biome": "^1.9.1",
+    "vite": "^5.4.6"
   },
   "scripts": {
     "dev": "bun x vite ./src",
