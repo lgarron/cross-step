@@ -13,7 +13,8 @@ clean: setup
 
 .PHONE: lint
 lint: setup
-	bun x @biomejs/biome
+	bun x @biomejs/biome check
+	bun x tsc --noEmit --project .
 
 .PHONE: setup
 setup:
@@ -21,7 +22,7 @@ setup:
 
 .PHONE: format
 format: setup
-	bun x @biomejs/biome format --write ./src
+	bun x @biomejs/biome check --write
 
 .PHOHY: deploy
 deploy: setup build

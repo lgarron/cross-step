@@ -116,9 +116,11 @@ video.addEventListener("pause", highlightCurrentTime);
 
 // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
 const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
-leadIn.checked = localStorage.crossStepAppLeadIn === "true";
+// biome-ignore lint/complexity/useLiteralKeys: https://github.com/biomejs/biome/issues/463
+leadIn.checked = localStorage["crossStepAppLeadIn"] === "true";
 leadIn.addEventListener("change", () => {
-  localStorage.crossStepAppLeadIn = leadIn.checked ? "true" : "false";
+  // biome-ignore lint/complexity/useLiteralKeys: https://github.com/biomejs/biome/issues/463
+  localStorage["crossStepAppLeadIn"] = leadIn.checked ? "true" : "false";
 });
 
 // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.

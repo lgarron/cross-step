@@ -40,7 +40,7 @@ controls {
 }
 
 .title,
-header>div {
+header > div {
   margin: 0.75em;
 }
 
@@ -77,7 +77,11 @@ a.timestamp-link {
   text-decoration: none;
   color: black;
 
-  background: linear-gradient(90deg, var(--gradient-left)50%, var(--gradient-right) 50%);
+  background: linear-gradient(
+    90deg,
+    var(--gradient-left) 50%,
+    var(--gradient-right) 50%
+  );
   background-size: 200%;
   --gradient-left: rgba(0, 0, 0, 0.15);
   --gradient-right: rgba(0, 0, 0, 0.05);
@@ -126,8 +130,8 @@ a.timestamp-link.current {
 
 @media (prefers-color-scheme: dark) {
   html {
-    background: #000D;
-    color: #EEE;
+    background: #000d;
+    color: #eee;
   }
 
   header {
