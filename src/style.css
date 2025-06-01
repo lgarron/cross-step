@@ -44,7 +44,7 @@ header > div {
   margin: 0.75em;
 }
 
-.title a {
+.title a.small-link {
   font-weight: normal;
   font-size: 0.75em;
 }
@@ -126,6 +126,20 @@ a.timestamp-link.current {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
+}
+
+controls .heading {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  place-content: center;
+  padding: 0.5em;
+  gap: 0.5em;
+  height: 2em;
+  box-sizing: border-box;
+}
+
+.fleuron {
+  font-size: 125%;
 }
 
 @media (prefers-color-scheme: dark) {

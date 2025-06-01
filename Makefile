@@ -5,7 +5,7 @@ dev: setup
 
 .PHONE: build
 build: setup
-	bun x vite build --emptyOutDir --outDir ../dist/web/garron.net/app/cross-step/ ./src
+	bun x vite build --emptyOutDir --outDir ../dist/web/garron.net/app/dawn-mazurka/ ./src
 
 .PHONE: clean
 clean: setup

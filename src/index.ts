@@ -117,10 +117,10 @@ video.addEventListener("pause", highlightCurrentTime);
 // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
 const leadIn = document.querySelector("#lead-in")! as HTMLInputElement;
 // biome-ignore lint/complexity/useLiteralKeys: https://github.com/biomejs/biome/issues/463
-leadIn.checked = localStorage["crossStepAppLeadIn"] === "true";
+leadIn.checked = localStorage["dawnMazurkaAppLeadIn"] === "true";
 leadIn.addEventListener("change", () => {
   // biome-ignore lint/complexity/useLiteralKeys: https://github.com/biomejs/biome/issues/463
-  localStorage["crossStepAppLeadIn"] = leadIn.checked ? "true" : "false";
+  localStorage["dawnMazurkaAppLeadIn"] = leadIn.checked ? "true" : "false";
 });
 
 // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
@@ -133,7 +133,7 @@ for (let i = 0; i < buttons.length; i++) {
     video.currentTime = Math.max(
       // biome-ignore lint/style/noNonNullAssertion: Rely on the element to exist.
       Number.parseFloat(button.getAttribute("data-timestamp")!) -
-        (leadIn.checked ? 6 : 0),
+        (leadIn.checked ? 4.35 : 0),
       0,
     );
     if (leadIn.checked) {
