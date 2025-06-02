@@ -12,5 +12,8 @@
   },
   "@cubing/deploy": {
     "https://garron.net/app/dawn-mazurka/": {}
+  },
+  "dependencies": {
+    "dashjs": "^5.0.3"
   }
 }

@@ -1,3 +1,15 @@
+import "dashjs";
+
+// 🤨
+const { dashjs } = globalThis;
+
+const url =
+  "https://garron.net/temp/adaptive-video-test/mpeg-dash-generator/dawn-mazurka/dawn-mazurka.mpd";
+const player = dashjs.MediaPlayer().create();
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
+player.initialize(document.querySelector("#videoPlayer")!, url, true);
+console.log("foo", document.querySelector("#videoPlayer")!);
+
 const buttons = document.querySelectorAll(
   "a.timestamp-link",
 ) as NodeListOf<HTMLElement>;
