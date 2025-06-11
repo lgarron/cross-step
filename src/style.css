@@ -78,7 +78,6 @@ input {
     light-dark(white, rgb(35, 35, 35)) 100%,
     transparent
   );
-  margin-bottom: 0.5em;
 }
 
 #lead-in-flash {
@@ -111,6 +110,10 @@ a.timestamp-link {
   background-size: 200%;
   --gradient-left: rgba(0, 0, 0, 0.15);
   --gradient-right: rgba(0, 0, 0, 0.05);
+}
+
+.settings + a.timestamp-link {
+  margin-top: 0;
 }
 
 .timestamp-value {
