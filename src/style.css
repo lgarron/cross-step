@@ -43,13 +43,12 @@ controls {
   padding: 0;
 }
 
-.title,
-header > div {
-  margin: 0.5em;
+.title {
+  margin: 0.75rem;
 }
 
-.subtitle {
-  padding: 0 1em;
+.subtitle p {
+  margin: 0.75rem;
 }
 
 .title a.small-link {
@@ -134,6 +133,7 @@ video {
   object-fit: contain;
   overflow: hidden;
   background: rgba(0, 0, 0, 1);
+  cursor: pointer;
 }
 
 .flourish {

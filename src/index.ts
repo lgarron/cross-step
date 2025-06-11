@@ -4,11 +4,19 @@ import "dashjs";
 const { dashjs } = globalThis;
 
 const url =
-  "https://garron.net/temp/adaptive-video-test/mpeg-dash-generator/dawn-mazurka/dawn-mazurka.mpd";
+  "https://garron.net/dance/choreo/dawn-mazurka/video/dash/dawn-mazurka/dawn-mazurka.mpd";
 const player = dashjs.MediaPlayer().create();
-// biome-ignore lint/style/noNonNullAssertion: <explanation>
-player.initialize(document.querySelector("#videoPlayer")!, url, true);
-console.log("foo", document.querySelector("#videoPlayer")!);
+player.initialize(
+  // biome-ignore lint/style/noNonNullAssertion: We depend on this element to exist.
+  document.querySelector<HTMLMediaElement>("#videoPlayer")!,
+  url,
+  true,
+);
+console.log(
+  "foo",
+  // biome-ignore lint/style/noNonNullAssertion: We depend on this element to exist.
+  document.querySelector("#videoPlayer")!,
+);
 
 const buttons = document.querySelectorAll(
   "a.timestamp-link",
@@ -76,8 +84,6 @@ function setPercent(
 }
 
 let currentButtonInfo: ButtonInfo | null;
-// biome-ignore lint/style/noInferrableTypes: Explicit is better than implicit.
-let lastHotPathTimestamp: number = 0;
 function highlightCurrentTime(e: Event) {
   const { currentTime } = video;
   if (
@@ -89,7 +95,6 @@ function highlightCurrentTime(e: Event) {
     if (e.type !== "timeupdate") {
       setPercent(currentButtonInfo, currentTime, e.type);
     }
-    lastHotPathTimestamp = currentTime;
     return;
   }
 
