@@ -16,7 +16,6 @@ body {
 
   position: fixed;
   overflow-y: hidden;
-  height: 100%;
   max-height: 100%;
 }
 
@@ -32,7 +31,7 @@ header {
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-controls {
+timestamp-controls {
   grid-area: controls;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -160,11 +159,11 @@ a.timestamp-link.current {
   }
 }
 
-controls {
+timestamp-controls {
   top: 0;
 }
 
-controls .heading {
+timestamp-controls .heading {
   display: grid;
   grid-template-columns: auto auto auto;
   place-content: center;
@@ -196,7 +195,7 @@ controls .heading {
     color: rgba(255, 255, 255, 0.5);
   }
 
-  controls {
+  timestamp-controls {
     --background-color: rgb(35, 35, 35);
     background-color: var(--background-color);
   }
