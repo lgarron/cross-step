@@ -5,18 +5,21 @@ const { dashjs } = globalThis;
 
 const url =
   "https://garron.net/dance/choreo/dawn-mazurka/video/dash/dawn-mazurka/dawn-mazurka.mpd";
-const player = dashjs.MediaPlayer().create();
-player.initialize(
+if (new URL(location.href).hostname === "localhost") {
   // biome-ignore lint/style/noNonNullAssertion: We depend on this element to exist.
-  document.querySelector<HTMLMediaElement>("#videoPlayer")!,
-  url,
-  true,
-);
-console.log(
-  "foo",
-  // biome-ignore lint/style/noNonNullAssertion: We depend on this element to exist.
-  document.querySelector("#videoPlayer")!,
-);
+  document.querySelector<HTMLVideoElement>("#videoPlayer")!.src = new URL(
+    "./video/dawn-mazurka-1080p-qv25.mp4",
+    import.meta.url,
+  ).toString();
+} else {
+  const player = dashjs.MediaPlayer().create();
+  player.initialize(
+    // biome-ignore lint/style/noNonNullAssertion: We depend on this element to exist.
+    document.querySelector<HTMLMediaElement>("#videoPlayer")!,
+    url,
+    true,
+  );
+}
 
 const buttons = document.querySelectorAll(
   "a.timestamp-link",
@@ -83,6 +86,9 @@ function setPercent(
   );
 }
 
+// TODO: Cap this, for when the parent bounding box is too small?
+const SCROLL_MARGIN_EM = 3;
+
 let currentButtonInfo: ButtonInfo | null;
 function highlightCurrentTime(e: Event) {
   const { currentTime } = video;
@@ -115,10 +121,22 @@ function highlightCurrentTime(e: Event) {
       }
       setPercent(latestButtonInfo, currentTime, e.type);
       button.classList.add("current");
-      button.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+
+      const scrollMarginPx =
+        parseFloat(globalThis.getComputedStyle(button).fontSize) *
+        SCROLL_MARGIN_EM;
+      const buttonRect = button.getBoundingClientRect();
+      // biome-ignore lint/style/noNonNullAssertion: We know the parent element exists.
+      const parentRect = button.parentElement!.getBoundingClientRect();
+      const needsScroll =
+        buttonRect.top < parentRect.top + scrollMarginPx ||
+        buttonRect.bottom > parentRect.bottom - scrollMarginPx;
+      if (needsScroll) {
+        button.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
       currentButtonInfo = latestButtonInfo;
     }
   } else {
